@@ -11,7 +11,7 @@ import handler from './app/handler'
 
 const app = new Koa()
 const wechat = new Wechat(weconfig)
-
+console.log('token:',weconfig.token)
 app
 // connect and reply
 .use(WeConnector(weconfig.token))

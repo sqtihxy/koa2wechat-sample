@@ -1,5 +1,5 @@
 import {WeReply} from 'koa2wechat'
-import getWeather from './getWeather'
+import {currentWeather} from './getWeather'
 
 let textHandler = (xml)=>{
 	let weReply = new WeReply()
@@ -60,7 +60,7 @@ let textHandler = (xml)=>{
 	console.log("actions array : ",actions)
 	switch(actions[0].trim()){
 		case 'tq':
-			return getWeather(actions.slice(1))
+			return currentWeather.byName(actions.slice(1))
 			.then(content=>{
 				console.log(content)
 				textObj.content = content
@@ -82,9 +82,15 @@ let textHandler = (xml)=>{
 		default:
 			textObj.content = 'https://github.com/chux0519'
 	}
-	return Promise.resolve(textTpl(rpl))
+	return Promise.resolve(weReply.genXML(textObj))
 
 }
 
+// let xml = {
+// 	FromUserName:"from",
+// 	ToUserName:"to",
+// 	Content:"image"
+// }
+// textHandler(xml).then(res=>console.log(res))
 
 export default textHandler

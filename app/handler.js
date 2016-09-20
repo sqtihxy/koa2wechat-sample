@@ -30,13 +30,5 @@ let handler = (xml)=>{
 	}
 }
 
-// let xml = {
-// 	FromUserName:"from",
-// 	ToUserName:"to",
-// 	MsgType:"text",
-// 	Content:"image"
-// }
-// handler(xml).then(res=>console.log(res))
-
 export {handler}
 export default handler

@@ -3,9 +3,8 @@ import {currentWeather} from './getWeather'
 
 
 let locHandler = (xml)=>{
-    // 返回image voice video
 	let weReply = new WeReply()
-    // image voice video 类型 均有MediaId
+    // 获取经纬度，xml内容参考：http://mp.weixin.qq.com/wiki/17/f298879f8fb29ab98b2f2971d42552fd.html#.E5.9C.B0.E7.90.86.E4.BD.8D.E7.BD.AE.E6.B6.88.E6.81.AF
 	let {
             FromUserName,ToUserName,
             Location_X:lat,Location_Y:lon

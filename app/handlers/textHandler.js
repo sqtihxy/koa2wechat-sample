@@ -1,6 +1,24 @@
 import {WeReply} from 'koa2wechat'
 import {currentWeather} from './getWeather'
 
+const welcomeMsg = 
+`该项目为koa2wechat的演示项目
+实现功能：
+	1.发送‘tq,城市’，即可查询城市的实时天气
+	2.发送‘image’，将收到一张图片
+	3.发送‘video’，将收到一段视频
+	4.发送‘news’，将收到一条图文回复
+	5.发送‘voice’，将收到一段语音
+	6.发送图片、语音到此公众号，将会返回发送的消息
+	7.分享地图位置到此公众号，将会返回该经纬度的实时天气情况
+	8.其他情况将会返回指引
+koa2wechat是koa2的中间件，已经开源，代码在：
+	https://github.com/chux0519/koa2wechat
+此项目也已经开源，代码在：
+	https://github.com/chux0519/koa2wechat-sample
+欢迎大家fork和star
+作者邮箱：chuxdesign@hotmail.com
+`
 let textHandler = (xml)=>{
 	let weReply = new WeReply()
 
@@ -16,19 +34,19 @@ let textHandler = (xml)=>{
 	let imageObj = {
 		meta:meta,
 		type:'image',
-		mediaId:"mediaId"
+		mediaId:"gDXKafwJuUvlm1Lz38TO2tLtAGOUU28tRKd_VXeyVdcDnlGtMlerOg8SeEvECoHd"
 	}
 	let voiceObj = {
 		meta:meta,
 		type:'voice',
-		mediaId:"mediaId"
+		mediaId:"Lcd7om4VfglHkD-Cvo6E9Ik_5l1fx6jTnixa9Mi8qYHY5cNmLPIUVk8MXjXYC10G"
 	}
 	let videoObj = {
 		meta:meta,
 		type:'video',
-		mediaId:"mediaId",
-		title:"title",	//*
-		desc:"desc"	//*
+		mediaId:"LnFqDNEdJXP8Mt8lfcrKckzvFfJcIuHQNWv039vuqZA",
+		title:"越南",
+		desc:"GF"	
 	}
 	let musicObj = {
 		meta:meta,
@@ -43,14 +61,14 @@ let textHandler = (xml)=>{
 			{		
 				title:"title1",
 				desc:" description 1",
-				picUrl:" pic url",
-				url:" origin url"
+				picUrl:"http://mmbiz.qpic.cn/mmbiz_png/oruMlMibbW0fpyNFohCUlhZNCFzyLdI1MqnZB3ib69AMwaniaRf8lK0Av3cyvSZxneFKL8cLca67JShM4Wz1ibXjsQ/0?wx_fmt=png",
+				url:"https://github.com/chux0519"
 			},
 			{		
 				title:"title2",
-				desc:"description2",
-				picUrl:" pic url",
-				url:" origin url"
+				desc:" description 2",
+				picUrl:"http://mmbiz.qpic.cn/mmbiz_png/oruMlMibbW0fpyNFohCUlhZNCFzyLdI1MqnZB3ib69AMwaniaRf8lK0Av3cyvSZxneFKL8cLca67JShM4Wz1ibXjsQ/0?wx_fmt=png",
+				url:"https://github.com/chux0519"
 			}
 		]
 	}
@@ -80,7 +98,7 @@ let textHandler = (xml)=>{
 		case 'news':
 			return Promise.resolve(weReply.genXML(newsObj))
 		default:
-			textObj.content = 'https://github.com/chux0519'
+			textObj.content = welcomeMsg
 	}
 	return Promise.resolve(weReply.genXML(textObj))
 
